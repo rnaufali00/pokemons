@@ -1,0 +1,11 @@
+@media (max-width:576px){
+    .bottom-navbar{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 56px;
+        width: 100%;
+        padding: 0;
+        box-shadow: 0 -2px 4px 0 rgba(108,114,124,0.16);
+    }
+}
