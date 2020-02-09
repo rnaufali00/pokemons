@@ -1,0 +1,31 @@
+.card-custom{
+    box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
+    text-align: center;
+    text-transform: capitalize;
+    .card-owned{
+        position: absolute;
+        background: white;
+        opacity: 0.8;
+        padding: 3px 10px;
+        top: 8px;
+        left: 5px;
+        min-width: 60%;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 10px;
+        
+    }
+    .card-img{
+        background-color: #dd2d51;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        min-height: 133px;
+    }
+    .card-body{
+        padding: 0.75rem;
+        .card-title{
+            font-size: 18px;
+            margin-bottom: 0px;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.header-custom{
+    position: fixed;
+    z-index: 999;
+    background: white;
+    width: 100%;
+    top: 0;
+    height: 60px;
+    background: #dd2d51;
+    box-shadow: 0 5px 4px 0 rgba(108, 114, 124, 0.16);
+
+    img{
+        padding-left: 30px;
+        height: 50px;
+    }
+}

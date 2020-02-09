@@ -1,9 +1,31 @@
+@import '../../variable';
+
+.bottom-navbar{
+    z-index: 999;
+    background-color: white;
+}
+.link-custom{
+    display: block;
+    padding: .5rem 1rem;
+    text-align: center;
+    font-size: 12px;
+    color: gray !important;
+    text-decoration: none !important;
+    &:hover{
+        color: $red-pokemon !important;
+    }
+
+
+    img{
+        height: 40px;
+    }
+}
 @media (max-width:576px){
     .bottom-navbar{
         position: fixed;
         bottom: 0;
         left: 0;
-        height: 56px;
+        height: 70px;
         width: 100%;
         padding: 0;
         box-shadow: 0 -2px 4px 0 rgba(108,114,124,0.16);
