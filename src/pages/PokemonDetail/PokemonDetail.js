@@ -134,33 +134,35 @@ const PokemonDetail = () =>{
                             Catch Pokemon
                         </Button>
                     </div>
-                    <h3 className="mt-4" style={{textTransform:'capitalize'}}>{pokemon.name}</h3>
-                    <div className="pokemon-info-etc">
-                        Weight: {pokemon.weight} <br/>
-                        Height: {pokemon.height} <br/>
-                        Base Exp: {pokemon.base_experience}
+                    <div className="pokemon-detail-content">
+                        <h3 className="mt-4" style={{textTransform:'capitalize'}}>{pokemon.name}</h3>
+                        <div className="pokemon-info-etc">
+                            Weight: {pokemon.weight} <br/>
+                            Height: {pokemon.height} <br/>
+                            Base Exp: {pokemon.base_experience}
+                        </div>
+                        <div className="d-flex type-list">
+                            {pokemon.types.map((type,index)=>{
+                                return(
+                                    <div key={`type_${index}`} className="type-label"> {type.type.name} </div> 
+                                )   
+                            })}
+                        </div>
+                    
+                        <Tabs defaultActiveKey="moves">
+                            <Tab eventKey="moves" title="Moves">
+                                <Row className="my-2 moves-container">
+                                    {pokemon.moves.map((move,index)=>{
+                                        return(
+                                            <Col key={`move_${index}`} className="text-center move-card py-2" xs={6} md={4} lg={3}>
+                                                <div className="move-label">{move.move.name}</div>
+                                            </Col> 
+                                        )   
+                                    })}
+                                </Row>
+                            </Tab>
+                        </Tabs>
                     </div>
-                    <div className="d-flex type-list">
-                        {pokemon.types.map((type,index)=>{
-                            return(
-                                   <div key={`type_${index}`} className="type-label"> {type.type.name} </div> 
-                            )   
-                        })}
-                    </div>
-                   
-                    <Tabs defaultActiveKey="moves">
-                        <Tab eventKey="moves" title="Moves">
-                            <Row className="my-2 moves-container">
-                                {pokemon.moves.map((move,index)=>{
-                                    return(
-                                        <Col key={`move_${index}`} className="text-center move-card py-2" xs={6}>
-                                            <div className="move-label">{move.move.name}</div>
-                                        </Col> 
-                                    )   
-                                })}
-                            </Row>
-                        </Tab>
-                    </Tabs>
                 </div>
                 <ModalSuccess
                     show={modalShow}

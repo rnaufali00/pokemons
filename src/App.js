@@ -14,7 +14,7 @@ function App() {
   return (
     <HashRouter>
       <Header/>
-      <div className="App m-4">
+      <div className="App">
           <Navbar/>
           <Switch>
             <Route path="/" exact component={PokemonList}/>

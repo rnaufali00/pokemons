@@ -1,4 +1,11 @@
 .App{
     padding-bottom: 70px;
     padding-top: 50px;
+    margin: 1.5rem!important;
+}
+
+@media (min-width:577px){
+    .App{
+        margin: 1.5rem 15% !important;
+    }
 }

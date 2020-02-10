@@ -1,7 +1,14 @@
 @import '../../_variable.scss';
 
+
+@mixin random-bgr(){
+    background: rgb(random(255), random(255), random(255));
+}
+
 .pokemon-detail-img{
     min-height: 220px;
+    border: 12px solid $red-pokemon;
+    border-radius: 50%;
 }
 
 .pokemon-detai-desc{
@@ -13,11 +20,12 @@
     border-radius: initial;
     padding: 8px;
     overflow: unset !important;
-    text-align: justify;
+    text-align: center;
 
     .catch-pokemon-container{
         position: absolute;
         right: 0;
+        left: 0;
         top: -1.25rem;
 
         .cacth-btn{
@@ -52,43 +60,58 @@
             }
         }
     }
-    .pokemon-info-etc{
-        color: gray;
-        font-size: 13px;
-    }
-    
-    .type-list{
-        flex-wrap: wrap;
-        .type-label{
-            margin:1rem 0px;
-            margin-right: 1rem;
-            min-width: 100px;
-            text-align: center;
-            text-transform: capitalize;
-            font-weight: 600;
-            border: double 5px transparent;
-            border-radius: 15px;
-            background-image: linear-gradient(white, white), 
-                                linear-gradient(to right, coral, #dd2d51);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-    
+    .pokemon-detail-content{
+        text-align: justify;
+        .pokemon-info-etc{
+            color: gray;
+            font-size: 13px;
+        }
+        
+        .type-list{
+            flex-wrap: wrap;
+            .type-label{
+                margin:1rem 0px;
+                margin-right: 1rem;
+                min-width: 100px;
+                text-align: center;
+                text-transform: capitalize;
+                font-weight: 600;
+                border: double 5px transparent;
+                border-radius: 15px;
+                background-image: linear-gradient(white, white), 
+                                    linear-gradient(to right, coral, #dd2d51);
+                background-origin: border-box;
+                background-clip: content-box, border-box;
+        
+            }
+        }
+        .moves-container{
+            max-height: 225px;
+            overflow-y: auto;
+            
+            .move-label{
+                min-width: 100px;
+                text-align: center;
+                padding: 5px;
+                color: white;
+                font-weight: 600;
+                border-radius: 15px;
+                box-shadow: 2px 2px 5px gainsboro;
+            }
         }
     }
-    .moves-container{
-        max-height: 225px;
-        overflow-y: auto;
-        .move-label{
-            min-width: 100px;
-            text-align: center;
-            padding: 5px;
-            color: white;
-            border-radius: 15px;
-            background: linear-gradient(305deg, #1E3559 -149%, #dd2d51 85%)
-        }
-    }
-
 }
+
+$avatarBgColors: #fd7d24, #b97fc9, #9bcc50, #4592c4, #c561d6;
+
+@for $i from 1 through length($avatarBgColors) {
+  .move-card:nth-child(#{length($avatarBgColors)}n + #{$i}) {
+    .move-label{
+        background: nth($avatarBgColors, $i);
+    }
+  }
+}
+
 .modal-content{
     border:0px !important;
     .modal-header{
@@ -121,3 +144,36 @@
         }
     }
 }
+
+@media (min-width:577px){
+    .pokemon-detai-desc{
+        .pokemon-detail-content{
+            text-align: center;
+            .type-list{
+                justify-content: center;
+                .type-label{
+                    margin: 0.5rem;
+                }
+            }
+            .moves-container{
+                max-height:none;
+            }
+        }
+    }
+}
+
+@mixin border-gradient($from, $to, $weight: 0) {
+    $mix-main: mix($from, $to);
+    $mix-sub-from: mix($mix-main, $from);
+    $mix-sub-to: mix($mix-main, $to);
+    
+    box-shadow: 0 1px 0 $weight rgba($mix-sub-to, .25),
+                0 -1px 0 $weight rgba($mix-sub-from, .25),
+                1px 0 0 $weight rgba($mix-sub-to, .25),
+                -1px 0 0 $weight  rgba($mix-sub-from, .25),
+                1px -1px 0 $weight rgba($mix-main, .5),
+                -1px 1px 0 $weight rgba($mix-main, .5),
+                1px 1px 0 $weight rgba($to, .75),
+                -1px -1px 0 $weight rgba($from, .75);
+  }
+  
