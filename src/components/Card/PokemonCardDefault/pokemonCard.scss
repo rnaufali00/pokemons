@@ -2,6 +2,13 @@
     box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
     text-align: center;
     text-transform: capitalize;
+    border:none !important;
+    box-shadow: 0 1px 6px 0 grey;
+    transition: .3s;
+    &:hover{
+        z-index: 99999;
+        transform: scale(1.1);
+    }
     .card-owned{
         position: absolute;
         background: white;

@@ -4,11 +4,26 @@
 @mixin random-bgr(){
     background: rgb(random(255), random(255), random(255));
 }
-
-.pokemon-detail-img{
-    min-height: 220px;
-    border: 12px solid $red-pokemon;
-    border-radius: 50%;
+@keyframes glowing {
+    0% { box-shadow: 0 0 -10px red; }
+    40% { box-shadow: 0 0 40px red; }
+    60% { box-shadow: 0 0 40px red; }
+    100% { box-shadow: 0 0 -10px red; }
+  }
+.pokemon-img-container{
+    max-width: 275px;
+    margin: auto;
+    background: white;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
+    .pokemon-detail-img{
+        min-height: 220px;
+        border: 12px solid $red-pokemon;
+        border-radius: 50%;
+        padding: 10px;
+        animation: glowing 1500ms infinite;
+    }
 }
 
 .pokemon-detai-desc{
@@ -17,8 +32,8 @@
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
     margin: 0px -15px 0px;
-    border-radius: initial;
-    padding: 8px;
+    border-radius: 10px;
+    padding: 8px 20px;
     overflow: unset !important;
     text-align: center;
 
@@ -95,19 +110,19 @@
                 padding: 5px;
                 color: white;
                 font-weight: 600;
-                border-radius: 15px;
+                border-radius: 7px;
                 box-shadow: 2px 2px 5px gainsboro;
             }
         }
     }
 }
 
-$avatarBgColors: #fd7d24, #b97fc9, #9bcc50, #4592c4, #c561d6;
+$avatarBgColors: #fd7d24, #b97fc9, #9bcc50, #4592c4, #c561d6,#dd2d51;
 
 @for $i from 1 through length($avatarBgColors) {
   .move-card:nth-child(#{length($avatarBgColors)}n + #{$i}) {
     .move-label{
-        background: nth($avatarBgColors, $i);
+        background:linear-gradient(305deg, #1E3559 -149%, nth($avatarBgColors, $i) 79%) ;
     }
   }
 }

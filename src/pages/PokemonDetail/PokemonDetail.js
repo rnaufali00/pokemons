@@ -5,6 +5,7 @@ import './PokemonDetail.scss';
 import { useDispatch } from 'react-redux';
 import { cacthPokemon } from '../../Store/actions';
 import ContentLoader from "react-content-loader";
+import IconPokeball from '../../assets/icons8-open-pokeball.png'
 
 
 const PokemonDetail = () =>{
@@ -124,13 +125,13 @@ const PokemonDetail = () =>{
     if(pokemon.sprites){
         return (
             <div className="text-center">
-                <div>
+                <div className="pokemon-img-container">
                     <img className="pokemon-detail-img" alt="" src={pokemon.sprites.front_default}/>
                 </div>
                 <div className="pokemon-detai-desc">
                     <div className="catch-pokemon-container">
                         <Button variant="danger" className="cacth-btn" onClick={()=>handleCatch()}> 
-                            <img className="pokeball-img" alt="" src="/icons8-open-pokeball.png"/>
+                            <img className="pokeball-img" alt="" src={IconPokeball}/>
                             Catch Pokemon
                         </Button>
                     </div>
@@ -154,7 +155,7 @@ const PokemonDetail = () =>{
                                 <Row className="my-2 moves-container">
                                     {pokemon.moves.map((move,index)=>{
                                         return(
-                                            <Col key={`move_${index}`} className="text-center move-card py-2" xs={6} md={4} lg={3}>
+                                            <Col key={`move_${index}`} className="text-center move-card py-2" xs={6} md={4} lg={2}>
                                                 <div className="move-label">{move.move.name}</div>
                                             </Col> 
                                         )   

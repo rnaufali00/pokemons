@@ -19,7 +19,7 @@ const PokemonList = () =>{
                     pokemon.owned = userPokemon.get(index+1);
                 else
                     pokemon.owned = 0;
-                // pokemon.img = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${index+1}.png?raw=true`
+                
                 pokemon.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`
 
             }
@@ -36,7 +36,7 @@ const PokemonList = () =>{
         <Row>
         {pokemonData.map((pokemon,index)=>{
             return (
-                <Col key={`pokemon_${index}`} className="p-2" xs={6} sm={3} md={2}>
+                <Col key={`pokemon_${index}`} className="p-2" xs={6} sm={3} md={3} lg={2}>
                    <Link style={{color:'initial'}} to={`/pokemon/${index+1}`}><PokemonCard  pokemon={pokemon}/></Link>
                 </Col>
             )

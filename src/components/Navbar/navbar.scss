@@ -29,17 +29,41 @@
 }
 @media (min-width:577px){
     .bottom-navbar{
-        top: 60px;
-        height: 100%;
+        top: 15%;
+        height: fit-content;
         width: 10%;
         display: inline-block !important;
         justify-content: center;
-        padding: 10px 0px;
+        background: transparent;
         box-shadow: 2px 2px 7px rgba(108, 114, 124, 0.16);
     }
 
-    .link-custom{
-        border-bottom: 1.2px solid rgba(108, 114, 124, 0.16);
-        padding: 10px 0px;
+    .nav-item{
+        &:nth-child(1){
+            .link-custom{
+                border-right: 5px solid crimson;
+                // border-bottom: 1.2px solid rgba(108, 114, 124, 0.16);
+                border-bottom: .8px solid gainsboro
+            }
+        }
+        &:nth-child(2){
+            .link-custom{
+                border-right: 5px solid orange;
+                border-top: .8px solid gainsboro;
+
+                // border-top: 1.2px solid rgba(108, 114, 124, 0.16);
+            }
+        }
+        .link-custom{
+            &:hover{
+                transform: scale(1.2);
+                margin: 6px 0px;
+            }
+            margin: 2px 0px;
+            padding: 10px 0px;
+            background: white;
+            transition: .3s;
+            -webkit-transition: .3s;
+        }
     }
 }
