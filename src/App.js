@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router,Switch,Route, HashRouter} from 'react-router-dom';
+import {Switch,Route, HashRouter} from 'react-router-dom';
 import PokemonList from './pages/PokemonList/PokemonList';
 import PokemonDetail from './pages/PokemonDetail/PokemonDetail';
 import MyPokemon from './pages/MyPokemon/MyPokemon';
+
+// USE import from src cause upload at github, else use public
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Header/Header';
 
