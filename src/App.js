@@ -10,7 +10,7 @@ import Header from './components/Header/Header';
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Header/>
       <div className="App m-4">
           <Navbar/>
