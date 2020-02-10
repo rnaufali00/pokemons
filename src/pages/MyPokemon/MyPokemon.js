@@ -26,7 +26,7 @@ const MyPokemon = () =>{
         <Row>
             {ownedPokemon.map((pokemon,index)=>{
                 return (
-                    <Col key={`pokemon_${index}`} className="p-2" xs={6} sm={4} md={3}>
+                    <Col key={`pokemon_${index}`} className="p-2" xs={6} sm={3} md={3} lg={2}>
                         <MyPokemonCard handleRemove={()=>dispacth(releasePokemon(pokemon,index))}  pokemon={pokemon}/>
                     </Col>
                 )
