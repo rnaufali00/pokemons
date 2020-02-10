@@ -110,6 +110,10 @@ const PokemonDetail = () =>{
     )
     
     useEffect(()=>{
+        // MAKE SCROLL TO TOP
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        
         const getPokemonDetail = async(id) =>{
             await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`).then(r=>r.json())
             .then(response =>{

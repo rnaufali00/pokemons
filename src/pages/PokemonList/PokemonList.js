@@ -9,27 +9,43 @@ import ContentLoader from "react-content-loader";
 
 const PokemonList = () =>{
     const [pokemonData,setData] = useState([]);
+    const [loadData,setLoadData] = useState(true);
     const userPokemon = useSelector(state=>state.pokemonName);
     
     const getPokemonData = async() =>{
-        await fetch("https://pokeapi.co/api/v2/pokemon/").then(r => r.json()).then(data =>{
+        let offset = pokemonData.length
+        await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}`).then(r => r.json()).then(data =>{
             let copyData = [...data.results];
             for(let [index,pokemon] of copyData.entries()){
-                if(userPokemon.has(index+1))
-                    pokemon.owned = userPokemon.get(index+1);
+                if(userPokemon.has(index+1+offset))
+                    pokemon.owned = userPokemon.get(index+1+offset);
                 else
                     pokemon.owned = 0;
                 
-                pokemon.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`
-
+                pokemon.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1+offset}.png`
+                
             }
-            setData(pokemonData.concat(copyData));
+            let newPokemonData = pokemonData.concat(copyData);
+            setData(newPokemonData);
+            setLoadData(false)
         });
     }
     
     useEffect(() =>{
-        getPokemonData();
-    },[])
+        if(loadData)
+            getPokemonData();
+    },[loadData])
+    
+    const handleScroll =()=> {
+        if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight *0.8){
+            setLoadData(true) 
+        } 
+    }
+    
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     
 
     const ListPokemon = () =>(
