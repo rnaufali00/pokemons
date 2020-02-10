@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import PokemonCard from '../../components/Card/PokemonCardDefault/PokemonCard';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,28 +10,27 @@ import ContentLoader from "react-content-loader";
 const PokemonList = () =>{
     const [pokemonData,setData] = useState([]);
     const userPokemon = useSelector(state=>state.pokemonName);
+    
+    const getPokemonData = async() =>{
+        await fetch("https://pokeapi.co/api/v2/pokemon/").then(r => r.json()).then(data =>{
+            let copyData = [...data.results];
+            for(let [index,pokemon] of copyData.entries()){
+                if(userPokemon.has(index+1))
+                    pokemon.owned = userPokemon.get(index+1);
+                else
+                    pokemon.owned = 0;
+                // pokemon.img = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${index+1}.png?raw=true`
+                pokemon.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`
 
+            }
+            setData(pokemonData.concat(copyData));
+        });
+    }
     
     useEffect(() =>{
-        const getPokemonData = async() =>{
-            await fetch("https://pokeapi.co/api/v2/pokemon/").then(r => r.json()).then(data =>{
-                let copyData = [...data.results];
-                for(let [index,pokemon] of copyData.entries()){
-                    if(userPokemon.has(index+1))
-                        pokemon.owned = userPokemon.get(index+1);
-                    else
-                        pokemon.owned = 0;
-                    // pokemon.img = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${index+1}.png?raw=true`
-                    pokemon.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`
-
-                }
-                setData(copyData);
-                console.log(copyData);
-            });
-        }
         getPokemonData();
-
-    },[userPokemon])
+    },[])
+    
 
     const ListPokemon = () =>(
         <Row>

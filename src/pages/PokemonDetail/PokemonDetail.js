@@ -4,6 +4,8 @@ import { Row, Col, Tabs, Tab, Button, Modal, Form, Toast } from 'react-bootstrap
 import './PokemonDetail.scss';
 import { useDispatch } from 'react-redux';
 import { cacthPokemon } from '../../Store/actions';
+import ContentLoader from "react-content-loader";
+
 
 const PokemonDetail = () =>{
     
@@ -11,13 +13,15 @@ const PokemonDetail = () =>{
     const [pokemon,setPokemon] = useState({});
     const [modalShow, setModalShow] = useState(false);
     const [notifFailedShow, setNotifFailedShow] = useState(false);
-    const [notifSuccessShow, setNotifSuccessShow] = useState(true);
+    const [notifSuccessShow, setNotifSuccessShow] = useState(false);
     const [formFlag, setFormFlag] = useState(true);
     const dispacth = useDispatch();
 
 
     const handleCatch = () =>{
         setFormFlag(true);
+        setNotifFailedShow(false);
+        setNotifSuccessShow(false);
         let chance = Math.random();
         if(chance < 0.5){
             setNotifFailedShow(true);
@@ -86,13 +90,22 @@ const PokemonDetail = () =>{
 
     const NotifSuccess = () =>(
         <div className="toast-container">
-            <Toast className="toast-success" onClose={() => setNotifSuccessShow(false)} show={notifSuccessShow}  animation={true} >
+            <Toast className="toast-success" onClose={() => setNotifSuccessShow(false)} show={notifSuccessShow}  delay={3000} animation={true} autohide >
                 <Toast.Header>
                     <strong className="mr-auto">Save to MyPokemon</strong>
                 </Toast.Header>
                 <Toast.Body>Congrats, success to catch pokemon...</Toast.Body>
             </Toast>
         </div>
+    )
+
+    const SkeletonLoading = () =>(
+        <ContentLoader  height={500}>
+            <rect x="0" y="0" rx="5" ry="5" width="300" height="300" />
+            <rect x="0" y="315" rx="4" ry="4" width="300" height="40" />
+            <rect x="0" y="375" rx="4" ry="4" width="300" height="40" />
+            <rect x="0" y="425" rx="4" ry="4" width="300" height="40" />
+        </ContentLoader> 
     )
     
     useEffect(()=>{
@@ -112,7 +125,7 @@ const PokemonDetail = () =>{
         return (
             <div className="text-center">
                 <div>
-                    <img className="pokemon-detail-img" src={pokemon.sprites.front_default}/>
+                    <img className="pokemon-detail-img" alt="" src={pokemon.sprites.front_default}/>
                 </div>
                 <div className="pokemon-detai-desc">
                     <div className="catch-pokemon-container">
@@ -153,12 +166,12 @@ const PokemonDetail = () =>{
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
-                <NotifFail/>
                 <NotifSuccess/>
+                <NotifFail/>
             </div>
         )
     }else{
-        return<label>Loading...</label>
+        return <SkeletonLoading/>
     }
 }
 

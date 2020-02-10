@@ -6,7 +6,7 @@ const MyPokemonCard = (props) =>{
     
     return(
     <Card className="card-custom">
-        <div className="card-owned">Owned: {props.pokemon.nickname}</div>
+        <div className="card-owned">{props.pokemon.nickname}</div>
         <Card.Img className="card-img" variant="top" src={props.pokemon.img?props.pokemon.img:props.pokemon.sprites.front_default} />
         <Card.Body className="card-body">
             <Card.Title>{props.pokemon.name}</Card.Title>

@@ -7,13 +7,13 @@ const Navbar = () =>(
     <Nav className="justify-content-center bottom-navbar" activeKey="/">
         <Nav.Item>
             <Link className="link-custom" to="/">
-                <img src="/pokemon-pokelist.png"/>
+                <img src="/pokemon-pokelist.png" alt=""/>
                 <div>Home</div>
             </Link>
         </Nav.Item>
         <Nav.Item>
             <Link className="link-custom" to="/myPokemon">
-                <img src="/pokemon-mypokemon.png"/>
+                <img src="/pokemon-mypokemon.png" alt=""/>
                 <div>My Pokemon</div>
             </Link>
         </Nav.Item>
