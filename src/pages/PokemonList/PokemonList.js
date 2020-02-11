@@ -3,7 +3,10 @@ import { Row, Col } from 'react-bootstrap';
 import PokemonCard from '../../components/Card/PokemonCardDefault/PokemonCard';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ContentLoader from "react-content-loader";
+import './pokemonList.scss';
+import LogoPokemon from '../../assets/International_Pokémon_logo.png';
+import SkeletonCard from '../../components/Skeleton/SkeletonCard';
+
 
 
 
@@ -11,6 +14,7 @@ const PokemonList = () =>{
     const [pokemonData,setData] = useState([]);
     const [loadData,setLoadData] = useState(true);
     const userPokemon = useSelector(state=>state.pokemonName);
+    const userDevice = useSelector(state=>state.device);
     
     const getPokemonData = async() =>{
         let offset = pokemonData.length
@@ -62,36 +66,43 @@ const PokemonList = () =>{
     
     const LoadingSkeleton = () =>{
         let card = []
-        for(let i=0;i<3;i++){
+        let max = userDevice === 'mobile'?2:6
+        for(let i=0;i<max;i++){
             card.push(
                 <Col key={`card_${i}`} xs={6} sm={3} md={2}>
-                    <div style={{height:'180px'}}>
-                        <ContentLoader>
-                            <rect x="0" y="0" rx="5" ry="5" width="120" height="120" />
-                            <rect x="0" y="125" rx="4" ry="4" width="120" height="40" />
-                        </ContentLoader>                
-                    </div>
+                    <SkeletonCard/>   
                 </Col>
              )
         }
 
         return card
     }
-
-    if(pokemonData.length<1){
-        return <div>
-            <Row>
-                <LoadingSkeleton/>
-            </Row>
-        </div>
-    }
-    else{
-        return (
-            <div>
-                <ListPokemon></ListPokemon>
+    const ContentList = () =>{
+        if(pokemonData.length<1){
+            return <div>
+                <Row>
+                    <LoadingSkeleton/>
+                </Row>
             </div>
-        )
+        }
+        else{
+            return (
+                <div>
+                    <ListPokemon></ListPokemon>
+                </div>
+            )
+        }
     }
+
+    return(
+        <div>
+            <div className="header-content">
+                <img src={LogoPokemon} alt=""/>
+                <h3 className="mt-3">"gotta catch 'em all"</h3>
+            </div>
+            <ContentList/>
+        </div>
+    )
 }
 
 export default PokemonList;

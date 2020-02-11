@@ -1,3 +1,5 @@
+@import '../../../_variable.scss';
+
 .card-custom{
     box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
     text-align: center;
@@ -20,10 +22,13 @@
         font-size: 12px;
         font-weight: 600;
         border-radius: 10px;
+        label{
+            margin-bottom: 0px;
+        }
         
     }
     .card-img{
-        background-color: #dd2d51;
+        background-color: $red-pokemon;
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
         min-height: 133px;
@@ -34,5 +39,17 @@
             font-size: 18px;
             margin-bottom: 0px;
         }
+        .release-btn{
+            padding: 2px 10px !important;
+        }
     }
+    .bottom-box{
+        border-bottom: 11px solid $black-pokemon;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        width: 70%;
+        height: 0;
+        align-self: center;
+    }
+
 }

@@ -1,0 +1,16 @@
+.header-content{
+    text-align: center;
+    color: grey;
+    margin-bottom: 20px;
+    img{
+        width: 180px;
+    }
+}
+
+@media(min-height:577px){
+    .header-content{
+        img{
+            width: 300px;
+        }
+    }
+}

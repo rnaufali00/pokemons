@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, Col, Tabs, Tab, Button, Modal, Form, Toast } from 'react-bootstrap';
 import './PokemonDetail.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { cacthPokemon } from '../../Store/actions';
-import ContentLoader from "react-content-loader";
 import IconPokeball from '../../assets/icons8-open-pokeball.png'
+import SkeletonDetail from '../../components/Skeleton/SkeletonDetail';
 
 
 const PokemonDetail = () =>{
@@ -99,15 +99,6 @@ const PokemonDetail = () =>{
             </Toast>
         </div>
     )
-
-    const SkeletonLoading = () =>(
-        <ContentLoader  height={500}>
-            <rect x="0" y="0" rx="5" ry="5" width="300" height="300" />
-            <rect x="0" y="315" rx="4" ry="4" width="300" height="40" />
-            <rect x="0" y="375" rx="4" ry="4" width="300" height="40" />
-            <rect x="0" y="425" rx="4" ry="4" width="300" height="40" />
-        </ContentLoader> 
-    )
     
     useEffect(()=>{
         // MAKE SCROLL TO TOP
@@ -117,7 +108,6 @@ const PokemonDetail = () =>{
         const getPokemonDetail = async(id) =>{
             await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`).then(r=>r.json())
             .then(response =>{
-                console.log(response);
                 setPokemon(response);
             }).catch(e =>{
                 console.log(e)
@@ -139,6 +129,7 @@ const PokemonDetail = () =>{
                             Catch Pokemon
                         </Button>
                     </div>
+                    
                     <div className="pokemon-detail-content">
                         <h3 className="mt-4" style={{textTransform:'capitalize'}}>{pokemon.name}</h3>
                         <div className="pokemon-info-etc">
@@ -178,7 +169,7 @@ const PokemonDetail = () =>{
             </div>
         )
     }else{
-        return <SkeletonLoading/>
+        return <div className="w-100-p text-center"><SkeletonDetail/></div>
     }
 }
 

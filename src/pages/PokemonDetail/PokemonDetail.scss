@@ -19,6 +19,7 @@
     box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
     .pokemon-detail-img{
         min-height: 220px;
+        min-width: 220px;
         border: 12px solid $red-pokemon;
         border-radius: 50%;
         padding: 10px;
@@ -44,7 +45,8 @@
         top: -1.25rem;
 
         .cacth-btn{
-            background: $red-pokemon;
+            box-shadow: 0px 0px 8px grey;
+            background: linear-gradient(305deg, #1E3559 -149%, $red-pokemon 85%);
             background-color: $red-pokemon;
             border-color:$red-pokemon;
             padding: 5px 15px;
