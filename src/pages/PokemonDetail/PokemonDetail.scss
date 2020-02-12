@@ -142,26 +142,6 @@ $avatarBgColors: #fd7d24, #b97fc9, #9bcc50, #4592c4, #c561d6,#dd2d51;
     }
 }
 
-.toast-container{
-    position: absolute;
-    top: 70px;
-    right: 7px;
-    opacity: .8;;
-    .toast{
-        color: white;
-        .toast-header{
-            background-color: initial;
-            color: white;
-        }
-        &.toast-fail{
-            background: $red-pokemon;
-        }
-        &.toast-success{
-            background: #28B351;
-        }
-    }
-}
-
 @media (min-width:577px){
     .pokemon-detai-desc{
         .pokemon-detail-content{

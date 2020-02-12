@@ -1,0 +1,21 @@
+@import '../../variable.scss';
+
+.toast-container{
+    position: absolute;
+    top: 70px;
+    right: 7px;
+    opacity: .8;;
+    .toast{
+        color: white;
+        .toast-header{
+            background-color: initial;
+            color: white;
+        }
+        &.toast-fail{
+            background: $red-pokemon;
+        }
+        &.toast-success{
+            background: $green-pokemon;
+        }
+    }
+}

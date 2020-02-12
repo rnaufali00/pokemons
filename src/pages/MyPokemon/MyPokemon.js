@@ -12,6 +12,7 @@ const MyPokemon = () =>{
     const ownedPokemon = useSelector(state=> state.pokemon);
     const dispacth= useDispatch();
 
+    // FOR LOTTIE IMG
     const defaultOptions = {
         loop: true,
         autoplay: true, 
@@ -37,10 +38,7 @@ const MyPokemon = () =>{
     if(ownedPokemon.length < 1){
         return (
             <div className="text-center">
-                <Lottie options={defaultOptions}
-                            height={125}
-                            width={125}
-                            />
+                <Lottie options={defaultOptions} height={125} width={125} />
                 <div style={{color:'grey'}}>
                     <h4>Sorry, you don't have pokemon....</h4>
                     <h3 className="mt-3">"gotta catch 'em all"</h3>

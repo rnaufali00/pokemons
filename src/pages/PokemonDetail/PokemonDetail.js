@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Row, Col, Tabs, Tab, Button, Modal, Form, Toast } from 'react-bootstrap';
+import { Row, Col, Tabs, Tab, Button, Modal, Form } from 'react-bootstrap';
 import './PokemonDetail.scss';
 import { useDispatch} from 'react-redux';
 import { cacthPokemon } from '../../Store/actions';
 import IconPokeball from '../../assets/icons8-open-pokeball.png'
 import SkeletonDetail from '../../components/Skeleton/SkeletonDetail';
+import NotifComponent from '../../components/Notif/Notif';
 
 
 const PokemonDetail = () =>{
@@ -77,28 +78,18 @@ const PokemonDetail = () =>{
         )
     }
 
-    
-    const NotifFail = () =>(
-        <div className="toast-container">
-            <Toast className="toast-fail" onClose={() => setNotifFailedShow(false)} show={notifFailedShow} delay={3000} animation={true} autohide>
-                <Toast.Header>
-                    <strong className="mr-auto">Oppsss!</strong>
-                </Toast.Header>
-                <Toast.Body>Sorry, fail to catch pokemon...</Toast.Body>
-            </Toast>
-        </div>
-    )
-
-    const NotifSuccess = () =>(
-        <div className="toast-container">
-            <Toast className="toast-success" onClose={() => setNotifSuccessShow(false)} show={notifSuccessShow}  delay={3000} animation={true} autohide >
-                <Toast.Header>
-                    <strong className="mr-auto">Save to MyPokemon</strong>
-                </Toast.Header>
-                <Toast.Body>Congrats, success to catch pokemon...</Toast.Body>
-            </Toast>
-        </div>
-    )
+    const ShowNotif = () =>{
+        if(notifFailedShow === true){
+            return (
+                <NotifComponent type="fail" handleOnClose={()=>setNotifFailedShow(false)} flagShow={notifFailedShow} title="Oppsss!" message="Sorry, fail to catch pokemon..." ></NotifComponent>
+            )
+        }else if(notifSuccessShow === true){
+            return(
+                <NotifComponent type="success" handleOnClose={()=>setNotifSuccessShow(false)} flagShow={notifSuccessShow} title="Save to MyPokemon" message="Congrats, success to catch pokemon..." ></NotifComponent>
+            )
+        }
+        return <div></div>;
+    }
     
     useEffect(()=>{
         // MAKE SCROLL TO TOP
@@ -164,8 +155,7 @@ const PokemonDetail = () =>{
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
-                <NotifSuccess/>
-                <NotifFail/>
+                <ShowNotif/>
             </div>
         )
     }else{

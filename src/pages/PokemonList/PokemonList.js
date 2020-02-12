@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import './pokemonList.scss';
 import LogoPokemon from '../../assets/International_Pokémon_logo.png';
 import SkeletonCard from '../../components/Skeleton/SkeletonCard';
+import animationData from '../../lotties/loading.json'
+import Lottie from 'react-lottie';
 
 
 
@@ -15,7 +17,18 @@ const PokemonList = () =>{
     const [loadData,setLoadData] = useState(true);
     const userPokemon = useSelector(state=>state.pokemonName);
     const userDevice = useSelector(state=>state.device);
+
+    // FOR LOTTIE IMG
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: animationData,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
     
+    // FECTH DATA
     const getPokemonData = async() =>{
         let offset = pokemonData.length
         await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}`).then(r => r.json()).then(data =>{
@@ -35,11 +48,13 @@ const PokemonList = () =>{
         });
     }
     
+    // RUN AFTER RENDER COMPONENT (ONE TIME ONLY) 
     useEffect(() =>{
         if(loadData)
             getPokemonData();
     },[loadData])
     
+    // RUN TO FECTH DATA WHEN 80% BOTTOM
     const handleScroll =()=> {
         if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight *0.8){
             setLoadData(true) 
@@ -101,6 +116,12 @@ const PokemonList = () =>{
                 <h3 className="mt-3">"gotta catch 'em all"</h3>
             </div>
             <ContentList/>
+            {loadData && (
+                <div className="text-center">
+                    <Lottie options={defaultOptions} height={125} width={125} />
+                    <h4 style={{marginTop:'-25px'}}>Please wait...</h4>
+                </div>
+            )}
         </div>
     )
 }
